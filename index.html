@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>Student Management System</h1>
+                <p>Manage student records easily</p>
+            </div>
+
+            <button id="clearAllBtn" class="danger-btn">
+                Clear All
+            </button>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+
+            <div class="card">
+                <span>Total Students</span>
+                <h2 id="totalStudents">0</h2>
+            </div>
+
+            <div class="card">
+                <span>Male Students</span>
+                <h2 id="maleStudents">0</h2>
+            </div>
+
+            <div class="card">
+                <span>Female Students</span>
+                <h2 id="femaleStudents">0</h2>
+            </div>
+
+            <div class="card">
+                <span>Average Age</span>
+                <h2 id="averageAge">0</h2>
+            </div>
+
+        </section>
+
+
+        <!-- Student Form -->
+        <section class="form-section">
+
+            <h2 id="formTitle">Add Student</h2>
+
+            <form id="studentForm">
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter full name"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input
+                            type="tel"
+                            id="mobile"
+                            placeholder="10 digit mobile number"
+                            maxlength="10"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter email"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="age">Age</label>
+                        <input
+                            type="number"
+                            id="age"
+                            placeholder="Enter age"
+                            min="10"
+                            max="100"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="course">Course</label>
+
+                        <select id="course" required>
+
+                            <option value="">
+                                Select Course
+                            </option>
+
+                            <option value="BCA">
+                                BCA
+                            </option>
+
+                            <option value="MCA">
+                                MCA
+                            </option>
+
+                            <option value="BSc CS">
+                                BSc CS
+                            </option>
+
+                            <option value="B.Tech">
+                                B.Tech
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="city">City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter city"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group gender-group">
+
+                        <label>Gender</label>
+
+                        <div class="radio-options">
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Male"
+                                    required
+                                >
+                                Male
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Female"
+                                >
+                                Female
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Other"
+                                >
+                                Other
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="submit"
+                        id="submitBtn"
+                        class="primary-btn"
+                    >
+                        Add Student
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelBtn"
+                        class="secondary-btn"
+                        hidden
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- Search and Filter -->
+        <section class="controls">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by name, mobile, email or city..."
+                >
+
+            </div>
+
+
+            <select id="courseFilter">
+
+                <option value="All">
+                    All Courses
+                </option>
+
+                <option value="BCA">
+                    BCA
+                </option>
+
+                <option value="MCA">
+                    MCA
+                </option>
+
+                <option value="BSc CS">
+                    BSc CS
+                </option>
+
+                <option value="B.Tech">
+                    B.Tech
+                </option>
+
+            </select>
+
+
+            <select id="sortSelect">
+
+                <option value="newest">
+                    Newest First
+                </option>
+
+                <option value="oldest">
+                    Oldest First
+                </option>
+
+                <option value="nameAZ">
+                    Name A-Z
+                </option>
+
+                <option value="nameZA">
+                    Name Z-A
+                </option>
+
+                <option value="ageLow">
+                    Age Low-High
+                </option>
+
+                <option value="ageHigh">
+                    Age High-Low
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- Student Table -->
+        <section class="table-section">
+
+            <div class="table-header">
+
+                <div>
+                    <h2>Student Records</h2>
+                    <p id="resultCount">
+                        0 students found
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Course</th>
+                            <th>City</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="studentTableBody">
+                    </tbody>
+
+                </table>
+
+
+                <div
+                    id="emptyMessage"
+                    class="empty-message"
+                >
+                    No student records found.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Update History -->
+        <section class="history-section">
+
+            <div class="history-header">
+
+                <h2>Update History</h2>
+
+                <button
+                    id="clearHistoryBtn"
+                    class="small-danger-btn"
+                >
+                    Clear History
+                </button>
+
+            </div>
+
+            <div id="historyContainer">
+
+                <p class="no-history">
+                    No update history available.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Delete Confirmation Modal -->
+    <div
+        id="deleteModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <h2>Delete Student?</h2>
+
+            <p>
+                Are you sure you want to delete this student?
+            </p>
+
+            <div class="modal-buttons">
+
+                <button
+                    id="confirmDeleteBtn"
+                    class="danger-btn"
+                >
+                    Delete
+                </button>
+
+                <button
+                    id="cancelDeleteBtn"
+                    class="secondary-btn"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Toast -->
+    <div
+        id="toast"
+        class="toast"
+    >
+        Student added successfully!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
